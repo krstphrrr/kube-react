@@ -1,16 +1,12 @@
 FROM node:17-alpine
 
-WORKDIR /
+WORKDIR /app
 
-ENV PATH /node_modules/.bin:$PATH 
+COPY package.json .
 
-COPY package.json ./
-COPY package-lock.json ./
+RUN npm install --silent
 
-RUN npm install --silent 
-RUN npm install react-scripts@5.0.0 -g --silent 
-
-COPY . ./
+COPY . .
 
 EXPOSE 3000
 
